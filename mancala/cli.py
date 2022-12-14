@@ -1,6 +1,7 @@
 import argparse
 
 from pandas import DataFrame
+import matplotlib.pyplot as plt
 
 from mancala.agents import ALL_AI_AGENTS, HumanAgent, RandomAgent, init_agent
 from mancala.arena import play_arena
@@ -66,13 +67,21 @@ def cli():
         if args.only:
             agents = args.only.split(",")
         wins, times = play_arena(agents, args.num_games, depth=args.depth)
-        print("Test to see if building works")
-        print("Test Wins (percent for p1 to win):")
-        print(DataFrame(wins))
+        print("Wins (percent for p1 to win):")
+        df_wins = DataFrame(wins)
+        print(df_wins)
+        df_wins.to_csv('outputs/wins.csv')
+        df_wins.plot.bar()
+        plt.tight_layout()
+        plt.savefig('outputs/wins.png')
         print()
-        print("Test Time:")
-        print(DataFrame(times))
-
+        print("Time:")
+        df_times = DataFrame(times)
+        print(df_times)
+        df_times.to_csv('outputs/times.csv')
+        df_times.plot.bar()
+        plt.tight_layout()
+        plt.savefig('outputs/times.png')
 
 if __name__ == "__main__":
     cli()

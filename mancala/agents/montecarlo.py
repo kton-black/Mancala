@@ -34,7 +34,7 @@ class MCTSRootNode():
         action = self._untried_actions.pop()
         next_state = self.state.clone().proceed_action(action)
         child = MCTSChildNode(next_state, action)
-        self.children = np.append(self.children, child)
+        self.children.append(child)
         return child
 
     def simulate(self, child):
@@ -91,5 +91,5 @@ class MCTSAgent(BaseAgent):
         legal_actions = state.legal_actions(state.turn)
         if legal_actions is None:
             return None
-        root = MCTSRootNode(state, sims=self._depth*5)
+        root = MCTSRootNode(state, sims=self._depth*2)
         return root.choose_action()
