@@ -4,18 +4,18 @@ from typing import Dict, List, Union
 import numpy as np
 from gym.utils import seeding
 
-from mancala.agents.a3c.agent import A3CAgent
 from mancala.agents.base import BaseAgent
 from mancala.agents.exact import ExactAgent
 from mancala.agents.human import HumanAgent
 from mancala.agents.max import MaxAgent
 from mancala.agents.minimax import MiniMaxAgent
 from mancala.agents.negascout import NegaScoutAgent
+from mancala.agents.montecarlo import MCTSAgent
 from mancala.agents.random import RandomAgent
 from mancala.state.base import BaseState
 
-ALL_AI_AGENTS = ["random", "exact", "max", "minimax", "negascout", "a3c", "mixed"]
-ARENA_AI_AGENTS = ["random", "max", "negascout", "a3c"]
+ALL_AI_AGENTS = ["random", "exact", "max", "minimax", "negascout", "mcts", "mixed"]
+ARENA_AI_AGENTS = ["random", "max", "negascout", "mcts"]
 
 
 def init_agent(agent_type: str, id: int, depth: int = 2) -> BaseAgent:
@@ -32,8 +32,8 @@ def init_agent(agent_type: str, id: int, depth: int = 2) -> BaseAgent:
         return MiniMaxAgent(id, depth)
     elif agent_type == "negascout":
         return NegaScoutAgent(id, depth)
-    elif agent_type == "a3c":
-        return A3CAgent(id)
+    elif agent_type == "mcts":
+        return MCTSAgent(id, depth)
     elif agent_type == "mixed":
         return MixedAgent(id)
     else:

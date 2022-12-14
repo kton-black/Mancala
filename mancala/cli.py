@@ -26,7 +26,10 @@ play_parser.add_argument(
     choices=ALL_AI_AGENTS + ["human"],
 )
 play_parser.add_argument(
-    "--depth", type=int, default=2, help="Depth for MiniMax and Negascout agents"
+    "--depth",
+    type=int,
+    default=2,
+    help="Depth for MiniMax and Negascout agents"
 )
 
 arena_parser = subparsers.add_parser("arena")
@@ -40,10 +43,13 @@ arena_parser.add_argument(
     "--only",
     type=str,
     default="",
-    help=f"Explicitly select agents to compare from {ALL_AI_AGENTS}",
+    help="Explicitly select agents to compare from ",
 )
 arena_parser.add_argument(
-    "--depth", type=int, default=2, help="Depth for MiniMax and Negascout agents"
+    "--depth",
+    type=int,
+    default=2,
+    help="Depth for MiniMax and Negascout agents"
 )
 
 
@@ -60,13 +66,12 @@ def cli():
         if args.only:
             agents = args.only.split(",")
         wins, times = play_arena(agents, args.num_games, depth=args.depth)
-        print("Wins (percent for p1 to win):")
+        print("Test to see if building works")
+        print("Test Wins (percent for p1 to win):")
         print(DataFrame(wins))
         print()
-        print("Time:")
+        print("Test Time:")
         print(DataFrame(times))
-    elif args.command == "train":
-        pass
 
 
 if __name__ == "__main__":
