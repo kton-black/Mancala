@@ -6,8 +6,8 @@ description = "Mancala written in Python, playable in CLI (GUI coming soon)!"
 authors = ["Qiushi Pan <qiu.gits@gmail.com> Keaton Black <ktbcxc@umsystem.edu>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/qqhann/Mancala"
-repository = "https://github.com/qqhann/Mancala"
+homepage = "https://github.com/ktbcxc/Mancala"
+repository = "https://github.com/ktbcxc/Mancala"
 keywords = ["mancala", "game", "gym", "reinforcement learning", "kalah"]
 
 [tool.poetry.scripts]
