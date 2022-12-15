@@ -10,18 +10,13 @@ from mancala.state.base import BaseState
 
 
 class MCTSRootNode:
-    def __init__(self, state: BaseState, depth: int, sims: int = 50, parent=None, parent_action=None):
+    def __init__(self, state: BaseState, depth: int, sims: int = 25):
         self.state = state.clone()
-        self.max_sims = sims
+        self.max_sims = depth * sims
         self.depth = depth
-        self.parent = parent
-        self.parent_act = parent_action
         self._untried_actions = self.state.legal_actions(self.state.turn)
         self.children = []
         self._num_sims = 0
-        self._results = defaultdict(int)
-        self._results[1] = 0
-        self._results[-1] = 0
 
     def select(self):
         """
